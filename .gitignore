@@ -1,0 +1,25 @@
+# Python-Cache & Build-Artefakte
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Test- & Type-Checker-Cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Daten (groß, nicht versionieren)
+data/raw/
+data/processed/
+
+# Betriebssystem-Müll
+.DS_Store          # macOS
+Thumbs.db          # Windows
+
+# Editor-spezifisch 
+.vscode/

@@ -1,8 +1,10 @@
-from gerrymander.data.loader import load_districts, EXPECTED_EPSG
+from pathlib import Path
+
 import geopandas as gpd
 import pytest
 from shapely.geometry import box
-from pathlib import Path
+
+from gerrymander.data.loader import EXPECTED_EPSG, load_districts
 
 
 def _write_fake_districts(path: Path, crs: str | int | None) -> Path:
@@ -10,15 +12,18 @@ def _write_fake_districts(path: Path, crs: str | int | None) -> Path:
     gdf.to_file(path)
     return path
 
+
 def test_load_districts_raises_if_crs_missing(tmp_path):
     shp = _write_fake_districts(tmp_path / "districts.shp", crs=None)
     with pytest.raises(ValueError, match="does not have a coordinate reference system"):
         load_districts(shp)
 
+
 def test_load_districts_raises_if_crs_not_expected(tmp_path):
     shp = _write_fake_districts(tmp_path / "districts.shp", crs="EPSG:4326")
     with pytest.raises(ValueError, match="Expected CRS EPSG"):
         load_districts(shp)
+
 
 def test_load_districts_happy_path(tmp_path):
     shp = _write_fake_districts(tmp_path / "districts.shp", crs=EXPECTED_EPSG)

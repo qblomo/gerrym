@@ -9,7 +9,15 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff", "mypy", "types-shapely", "types-geopandas"]
+dev = [
+    "pytest",
+    "ruff",
+    "mypy",
+    "types-shapely",
+    "types-geopandas",
+    "pyproj",
+    "pandas",
+]
 
 [build-system]
 requires = ["setuptools>=68"]
